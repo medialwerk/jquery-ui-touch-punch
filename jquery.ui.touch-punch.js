@@ -7,6 +7,12 @@
  * Depends:
  *  jquery.ui.widget.js
  *  jquery.ui.mouse.js
+ *
+ * Modified by Medialwerk
+ * Git: https://github.com/medialwerk/jquery-ui-touch-punch
+ *
+ * Forked from:
+ * Git: https://github.com/furf/jquery-ui-touch-punch/
  */
 (function ($) {
 
