@@ -35,6 +35,11 @@
       return;
     }
 
+    // Ignore if touch was on an input
+    if ($(event.target).is(':input')) {
+      return;
+    }
+
     event.preventDefault();
 
     var touch = event.originalEvent.changedTouches[0],
