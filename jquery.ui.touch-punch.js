@@ -20,7 +20,8 @@
 
   var mouseProto = $.ui.mouse.prototype,
       _mouseInit = mouseProto._mouseInit,
-      touchHandled;
+      touchHandled,
+      _touchedEl;
 
   /**
    * Simulate a mouse event based on a corresponding touch event
@@ -77,7 +78,8 @@
     touchHandled = true;
 
     // Track movement to determine if interaction was a click
-    self._touchMoved = false;
+
+    _touchedEl = event.target;
 
     // Simulate the mouseover event
     simulateMouseEvent(event, 'mouseover');
@@ -100,9 +102,6 @@
       return;
     }
 
-    // Interaction was not a click
-    this._touchMoved = true;
-
     // Simulate the mousemove event
     simulateMouseEvent(event, 'mousemove');
   };
@@ -124,8 +123,8 @@
     // Simulate the mouseout event
     simulateMouseEvent(event, 'mouseout');
 
-    // If the touch interaction did not move, it should trigger a click
-    if (!this._touchMoved) {
+    // If the touch interaction did not move away from the element, it should trigger a click
+    if (_touchedEl === event.target) {
 
       // Simulate the click event
       simulateMouseEvent(event, 'click');
